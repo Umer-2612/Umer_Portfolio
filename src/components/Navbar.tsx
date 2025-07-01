@@ -31,7 +31,7 @@ const Navbar = ({ darkMode }: NavbarProps) => {
           <div className="text-xl font-bold text-foreground">UK</div>
           
           <div className="hidden md:flex space-x-8">
-            {['About', 'Skills', 'Projects', 'Certifications', 'Contact'].map((item) => (
+            {['About', 'Experience', 'Skills', 'Projects', 'Certifications', 'Contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}

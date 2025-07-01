@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,6 +12,7 @@ import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import ThemeToggle from "@/components/ThemeToggle";
+import Experience from "@/components/Experience";
 
 const Index = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -33,6 +33,7 @@ const Index = () => {
       <main className="relative">
         <Hero />
         <About />
+        <Experience />
         <Skills />
         <Projects />
         <Certifications />
