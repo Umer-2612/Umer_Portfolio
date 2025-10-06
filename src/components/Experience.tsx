@@ -1,103 +1,147 @@
-
-import { Calendar, MapPin, ExternalLink } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Calendar } from "lucide-react";
+import { format } from "date-fns";
+import { useState } from "react";
 
-const Experience = () => {
-  const experiences = [
-    {
-      company: "WebOsmotic Private Limited",
-      role: "Jr Backend / DevOps Developer",
-      period: "Sept 2023 – Jun 2025",
-      location: "Remote",
-      achievements: [
-        "Led end-to-end development of multi-file upload pipeline to AWS S3",
-        "Built CI/CD pipelines with GitHub Actions and Terraform",
-        "Managed Kubernetes clusters on AWS EKS"
-      ],
-      technologies: ["AWS", "EKS", "GitHub Actions", "Terraform", "Node.js"]
-    },
-    {
-      company: "CodeInBound",
-      role: "Backend Intern",
-      period: "Jan 2023 – Aug 2023",
-      location: "Remote",
-      achievements: [
-        "Developed APIs and integrated CI pipelines",
-        "Wrote automation scripts for deployment"
-      ],
-      technologies: ["Node.js", "CI/CD", "Automation", "APIs"]
-    }
-  ];
+interface ExperienceItem {
+  company: string;
+  role: string;
+  startDate: string;
+  endDate: string | null;
+  achievements: string[];
+  badges: string[];
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    company: "WebOsmotic Pvt Ltd",
+    role: "Jr Backend Developer",
+    startDate: "2023-10-10",
+    endDate: "2025-06-20",
+    achievements: [
+      "Led AWS S3 multi-file upload pipeline",
+      "Built CI/CD with GitHub Actions & Terraform",
+      "Dockerized microservices for scalability",
+    ],
+    badges: ["Node.js", "TypeScript", "Express", "MongoDB", "Docker", "AWS"],
+  },
+  {
+    company: "CodeInBound",
+    role: "SDE Intern",
+    startDate: "2023-03-01",
+    endDate: "2023-05-31",
+    achievements: [
+      "Developed RESTful APIs for user management",
+      "Automated deployments via CI/CD",
+      "Integrated Jest tests & Git workflows",
+    ],
+    badges: ["React", "Node.js", "TypeScript", "PostgreSQL", "Git"],
+  },
+];
+
+const formatPeriod = (start: Date, end: Date | null) => {
+  const s = format(start, "MMM yyyy");
+  const e = end ? format(end, "MMM yyyy") : "Present";
+  return `${s} — ${e}`;
+};
+
+const ExperienceCard = ({ exp, idx }: { exp: ExperienceItem; idx: number }) => {
+  const [open, setOpen] = useState(false);
+  const start = new Date(exp.startDate);
+  const end = exp.endDate ? new Date(exp.endDate) : null;
 
   return (
-    <section id="experience" className="py-20 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Experience</h2>
-            <p className="text-lg text-muted-foreground">
-              Building reliable systems and automating infrastructure
-            </p>
+    <div className="relative mb-12 flex w-full max-w-xl mx-auto">
+      {/* Timeline marker */}
+      <div className="absolute left-4 top-3">
+        <div className="w-3 h-3 bg-primary rounded-full border-2 border-dark"></div>
+      </div>
+      {/* Card */}
+      <div className="ml-10 p-6 bg-secondary/20 backdrop-blur rounded-2xl border border-secondary/50 hover:border-primary transition w-full">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-lg font-semibold text-foreground">
+              {exp.role}
+            </h3>
+            <p className="text-sm text-muted-foreground mt-1">{exp.company}</p>
           </div>
+          <div className="flex items-center text-xs text-muted-foreground">
+            <Calendar className="w-4 h-4 mr-1 text-primary" />
+            <span>{formatPeriod(start, end)}</span>
+          </div>
+        </div>
 
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-primary">
-                <CardContent className="p-8">
-                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-foreground mb-2">
-                        {exp.role}
-                      </h3>
-                      <h4 className="text-xl font-semibold text-primary mb-3">
-                        {exp.company}
-                      </h4>
-                      <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          <span>{exp.period}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin className="h-4 w-4" />
-                          <span>{exp.location}</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <Button variant="outline" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      View Details
-                    </Button>
-                  </div>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {exp.badges.map((b, i) => (
+            <Badge
+              key={i}
+              variant="subtle"
+              className="text-[11px] font-mono border-primary/30 bg-primary/10 text-primary"
+            >
+              {b}
+            </Badge>
+          ))}
+        </div>
 
-                  <div className="mb-6">
-                    <ul className="space-y-2">
-                      {exp.achievements.map((achievement, achievementIndex) => (
-                        <li key={achievementIndex} className="flex items-start gap-3 text-muted-foreground">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+        <ul className="mt-4 text-sm text-foreground/80 space-y-1">
+          {/* Show first two achievements by default */}
+          {exp.achievements.slice(0, 2).map((a, i) => (
+            <li key={i}>{a}</li>
+          ))}
+        </ul>
 
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+        {exp.achievements.length > 2 && (
+          <button
+            className="mt-2 text-xs font-medium text-primary hover:underline"
+            onClick={() => setOpen(true)}
+          >
+            +{exp.achievements.length - 2} more
+          </button>
+        )}
+
+        {/* Modal for full achievements */}
+        {open && (
+          <div className="fixed inset-0 flex items-center justify-center bg-dark/80">
+            <div className="bg-dark p-6 rounded-xl max-w-md w-full">
+              <h4 className="text-lg font-semibold mb-4 text-foreground">
+                Achievements
+              </h4>
+              <ul className="list-disc list-inside space-y-2 text-sm text-foreground/80">
+                {exp.achievements.map((a, i) => (
+                  <li key={i}>{a}</li>
+                ))}
+              </ul>
+              <button
+                className="mt-6 px-4 py-2 bg-primary rounded-full text-sm font-medium hover:opacity-90"
+                onClick={() => setOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default function Experience() {
+  return (
+    <section id="experience" className="py-20 bg-dark">
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl font-bold mb-12 text-center text-gradient-primary">
+          Experience
+        </h2>
+        {/* Timeline container */}
+        <div className="relative">
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-secondary/50"></div>
+          <div className="space-y-0">
+            {experiences.map((exp, idx) => (
+              <ExperienceCard key={idx} exp={exp} idx={idx} />
             ))}
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Experience;
+}

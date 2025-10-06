@@ -1,11 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Cloud } from "lucide-react";
 
 const Hero = () => {
   const [text, setText] = useState("");
-  const fullText = "Hi, I'm Umer — Building Reliable Systems at Scale";
+  const fullText = "Hi, I'm Umer, Building Reliable Systems at Scale";
 
   useEffect(() => {
     let i = 0;
@@ -22,16 +21,16 @@ const Hero = () => {
   }, []);
 
   const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const technologies = [
-    { name: 'AWS', icon: '☁️' },
-    { name: 'Azure', icon: '🔷' },
-    { name: 'Kubernetes', icon: '⎈' },
-    { name: 'Docker', icon: '🐳' },
-    { name: 'Terraform', icon: '🏗️' },
-    { name: 'GitHub Actions', icon: '⚡' }
+    { name: "AWS", icon: "☁️" },
+    { name: "Azure", icon: "🔷" },
+    { name: "Kubernetes", icon: "⎈" },
+    { name: "Docker", icon: "🐳" },
+    { name: "Terraform", icon: "🏗️" },
+    { name: "GitHub Actions", icon: "⚡" },
   ];
 
   return (
@@ -46,7 +45,7 @@ const Hero = () => {
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 2}s`,
-              fontSize: `${Math.random() * 20 + 10}px`
+              fontSize: `${Math.random() * 20 + 10}px`,
             }}
           />
         ))}
@@ -57,9 +56,9 @@ const Hero = () => {
           {text}
           <span className="animate-pulse">|</span>
         </h1>
-        
+
         <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-          DevOps | SRE | Cloud Infrastructure | Automation
+          Backend | DevOps | Cloud Infrastructure | Automation
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">

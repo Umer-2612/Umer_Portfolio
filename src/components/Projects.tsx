@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -37,7 +36,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-card">
+    <section id="projects" className="py-20 bg-muted/10">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Projects & Case Studies</h2>
         

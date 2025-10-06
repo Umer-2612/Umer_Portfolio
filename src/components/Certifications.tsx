@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -31,7 +30,7 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="py-20">
+    <section id="certifications" className="py-20 bg-card">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Certifications & Achievements</h2>
         
