@@ -19,7 +19,7 @@ const experiences: ExperienceItem[] = [
     role: "Jr Backend Developer",
     startDate: "2023-09-01",
     endDate: "2025-06-01",
-    location: "Ahmedabad · Hybrid",
+    location: "Surat · Onsite",
     headline:
       "Shipped AI-assisted assessment tooling, real-time engagement, and observability guardrails across multi-cloud.",
     achievements: [
@@ -28,14 +28,22 @@ const experiences: ExperienceItem[] = [
       "Dockerised Microsoft Teams bots, wired GitHub Actions + Terraform for hands-off releases.",
       "Rolled out CloudWatch + Azure Monitor with automated anomaly detection and IAM guardrails tied to support workflows.",
     ],
-    stack: ["Node.js", "TypeScript", "AWS", "Docker", "GitHub Actions", "Terraform", "SQS"],
+    stack: [
+      "Node.js",
+      "TypeScript",
+      "AWS",
+      "Docker",
+      "GitHub Actions",
+      "Terraform",
+      "SQS",
+    ],
   },
   {
     company: "Code InBound",
     role: "SDE Intern",
     startDate: "2023-03-01",
     endDate: "2023-06-01",
-    location: "Surat · Hybrid",
+    location: "Delhi · Remote",
     headline:
       "Accelerated a network monitoring product with React delivery, CI discipline, and collaborative shipping.",
     achievements: [
@@ -62,7 +70,8 @@ const Experience = () => {
             Experience snapshots
           </h2>
           <p className="mt-3 text-base text-slate-600 dark:text-slate-300">
-            Where AIOps, MLOps, DevOps, and backend intersect to unblock product teams.
+            Where AIOps, MLOps, DevOps, and backend intersect to unblock product
+            teams.
           </p>
         </div>
 
