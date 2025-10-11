@@ -3,7 +3,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Rocket } from "lucide-react";
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    url: "https://github.com/umer-karachiwala",
+    icon: <Github className="h-5 w-5" />,
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/umer-karachiwala/",
+    icon: <Linkedin className="h-5 w-5" />,
+  },
+  {
+    name: "Email",
+    url: "mailto:karachiwalaumer2612@gmail.com",
+    icon: <Mail className="h-5 w-5" />,
+  },
+];
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,158 +31,154 @@ const Contact = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     toast({
       title: "Message sent!",
-      description: "Thanks for reaching out. I'll get back to you soon!",
+      description: "Thanks for reaching out. I'll get back to you soon.",
     });
     setFormData({ name: "", email: "", message: "" });
   };
 
-  const socialLinks = [
-    {
-      name: "GitHub",
-      url: "https://github.com/umer-karachiwala",
-      icon: <Github className="w-5 h-5 text-muted-foreground" />,
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/umer-karachiwala/",
-      icon: <Linkedin className="w-5 h-5 text-muted-foreground" />,
-    },
-    {
-      name: "Email",
-      url: "mailto:karachiwalaumer2612@gmail.com",
-      icon: <Mail className="w-5 h-5 text-muted-foreground" />,
-    },
-  ];
-
   return (
-    <section id="contact" className="py-20 bg-muted/10">
+    <section id="contact" className="relative py-20">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#dbeafe]/60 via-white to-transparent dark:from-slate-950/70 dark:via-slate-900 dark:to-transparent" />
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
-          Get In Touch
-        </h2>
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white md:text-4xl">
+            Let's build your next release
+          </h2>
+          <p className="mt-3 text-base text-slate-600 dark:text-slate-300">
+            Tell me about your platform roadmap, DevOps challenges, or the
+            product you want to ship in 2025.
+          </p>
+        </div>
 
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-          {/* Terminal Style Contact Form */}
-          <Card className="rounded-2xl border-0 bg-[#0D1117] text-green-400 font-mono">
-            <CardHeader>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <CardTitle className="text-green-400">Terminal</CardTitle>
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_1fr]">
+          <Card className="rounded-3xl border-white/60 bg-white/80 shadow-sm backdrop-blur dark:border-slate-800/60 dark:bg-slate-900/60">
+            <CardHeader className="space-y-3">
+              <CardTitle className="text-left text-2xl text-slate-900 dark:text-white">
+                Drop a message
+              </CardTitle>
+              <p className="text-sm text-slate-500 dark:text-slate-300">
+                I reply within 24 hours on weekdays. Share context, timelines,
+                and the impact you're aiming for.
+              </p>
             </CardHeader>
-
-            <CardContent className="space-y-4">
-              <div className="text-sm">
-                <p>umer@portfolio:~$ say_hello</p>
-                <p className="text-gray-400 mb-4">
-                  # Enter your message below...
-                </p>
-              </div>
-
+            <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <p className="text-xs text-gray-400 mb-1">$ name:</p>
-                  <Input
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className="bg-transparent border-green-400/30 text-green-400 font-mono text-sm"
-                    placeholder="Your name"
-                    required
-                  />
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                      Name
+                    </label>
+                    <Input
+                      value={formData.name}
+                      onChange={(event) =>
+                        setFormData({ ...formData, name: event.target.value })
+                      }
+                      required
+                      className="mt-1 rounded-2xl border-slate-200 bg-white px-4 py-2 text-slate-700 focus:border-primary focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                      Email
+                    </label>
+                    <Input
+                      type="email"
+                      value={formData.email}
+                      onChange={(event) =>
+                        setFormData({ ...formData, email: event.target.value })
+                      }
+                      required
+                      className="mt-1 rounded-2xl border-slate-200 bg-white px-4 py-2 text-slate-700 focus:border-primary focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                      placeholder="you@company.com"
+                    />
+                  </div>
                 </div>
-
                 <div>
-                  <p className="text-xs text-gray-400 mb-1">$ email:</p>
-                  <Input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="bg-transparent border-green-400/30 text-green-400 font-mono text-sm"
-                    placeholder="your.email@domain.com"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <p className="text-xs text-gray-400 mb-1">$ message:</p>
+                  <label className="text-sm font-medium text-slate-600 dark:text-slate-300">
+                    What would you like to collaborate on?
+                  </label>
                   <textarea
                     value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
+                    onChange={(event) =>
+                      setFormData({ ...formData, message: event.target.value })
                     }
-                    className="w-full p-3 bg-transparent border border-green-400/30 rounded text-green-400 font-mono text-sm min-h-[100px] resize-none"
-                    placeholder="Hello Umer, I'd like to discuss..."
                     required
+                    className="mt-1 min-h-[160px] w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm transition focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                    placeholder="Share the problem, desired outcome, and timelines…"
                   />
                 </div>
-
                 <Button
                   type="submit"
-                  className="bg-green-600 hover:bg-green-700 text-black font-mono text-sm rounded-xl"
+                  className="w-full rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-primary/90"
                 >
-                  $ send_message
+                  Send message
                 </Button>
               </form>
             </CardContent>
           </Card>
 
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-4 text-foreground">
-                Let's Connect
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                Always excited to discuss DevOps, cloud architecture, or
-                potential collaborations. Drop me a message and let's build
-                something amazing together!
-              </p>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <span className="text-lg">📍</span>
-                  <span className="text-muted-foreground">
-                    Letterkenny, Ireland
-                  </span>
+          <div className="space-y-6">
+            <Card className="rounded-3xl border-white/60 bg-white/80 p-6 text-left shadow-sm backdrop-blur dark:border-slate-800/60 dark:bg-slate-900/60">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-primary/20">
+                  <Rocket className="h-5 w-5" />
                 </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-lg">🌐</span>
-                  <span className="text-muted-foreground">
-                    Available for remote work
-                  </span>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                    Preferred engagements
+                  </h3>
+                  <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                    <li>• DevOps / platform automation audits</li>
+                    <li>• Backend feature builds and integrations</li>
+                    <li>• AI augmentation inside production workflows</li>
+                  </ul>
                 </div>
               </div>
-            </div>
+            </Card>
 
-            <div>
-              <h4 className="font-semibold mb-4 text-foreground">
-                Social Links
-              </h4>
-              <div className="flex flex-wrap gap-3">
-                {socialLinks.map((link) => (
+            <Card className="rounded-3xl border-white/60 bg-white/80 p-6 shadow-sm backdrop-blur dark:border-slate-800/60 dark:bg-slate-900/60">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  Donegal, Ireland · Remote-friendly
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-slate-900 dark:text-white">
+                    The fastest way to reach me
+                  </p>
                   <a
-                    key={link.name}
-                    href={link.url}
-                    className="flex items-center space-x-2 bg-background rounded-2xl px-4 py-2 border hover:border-primary/50 transition-colors"
+                    href="mailto:karachiwalaumer2612@gmail.com"
+                    className="mt-1 inline-flex items-center text-sm text-primary underline-offset-4 hover:underline"
                   >
-                    <span>{link.icon}</span>
-                    <span className="text-sm text-muted-foreground">
-                      {link.name}
-                    </span>
+                    karachiwalaumer2612@gmail.com
                   </a>
-                ))}
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-slate-900 dark:text-white">
+                    Connect elsewhere
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {socialLinks.map((link) => (
+                      <a
+                        key={link.name}
+                        href={link.url}
+                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 transition hover:border-primary/40 hover:text-primary dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {link.icon}
+                        {link.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            </Card>
           </div>
         </div>
       </div>
