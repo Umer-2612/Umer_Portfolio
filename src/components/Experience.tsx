@@ -1,147 +1,130 @@
 import { Badge } from "@/components/ui/badge";
-import { Calendar } from "lucide-react";
+import { CalendarDays, MapPin } from "lucide-react";
 import { format } from "date-fns";
-import { useState } from "react";
 
 interface ExperienceItem {
   company: string;
   role: string;
   startDate: string;
   endDate: string | null;
+  location: string;
+  headline: string;
   achievements: string[];
-  badges: string[];
+  stack: string[];
 }
 
 const experiences: ExperienceItem[] = [
   {
-    company: "WebOsmotic Pvt Ltd",
+    company: "WebOsmotic Private Limited",
     role: "Jr Backend Developer",
-    startDate: "2023-10-10",
-    endDate: "2025-06-20",
+    startDate: "2023-09-01",
+    endDate: "2025-06-01",
+    location: "Ahmedabad · Hybrid",
+    headline:
+      "Shipped AI-assisted assessment tooling, real-time engagement, and observability guardrails across multi-cloud.",
     achievements: [
-      "Led AWS S3 multi-file upload pipeline",
-      "Built CI/CD with GitHub Actions & Terraform",
-      "Dockerized microservices for scalability",
+      "Designed an S3-powered ingestion pipeline with GPT validation that shrinks content upload time from hours to minutes.",
+      "Automated real-time notifications on Node.js + SQS + Socket.io for 10k+ instructors and candidates.",
+      "Dockerised Microsoft Teams bots, wired GitHub Actions + Terraform for hands-off releases.",
+      "Rolled out CloudWatch + Azure Monitor with automated anomaly detection and IAM guardrails tied to support workflows.",
     ],
-    badges: ["Node.js", "TypeScript", "Express", "MongoDB", "Docker", "AWS"],
+    stack: ["Node.js", "TypeScript", "AWS", "Docker", "GitHub Actions", "Terraform", "SQS"],
   },
   {
-    company: "CodeInBound",
+    company: "Code InBound",
     role: "SDE Intern",
     startDate: "2023-03-01",
-    endDate: "2023-05-31",
+    endDate: "2023-06-01",
+    location: "Surat · Hybrid",
+    headline:
+      "Accelerated a network monitoring product with React delivery, CI discipline, and collaborative shipping.",
     achievements: [
-      "Developed RESTful APIs for user management",
-      "Automated deployments via CI/CD",
-      "Integrated Jest tests & Git workflows",
+      "Implemented production-ready React components and improved sprint velocity across monitoring modules.",
+      "Partnered with senior engineers on reviews, tests, and agile rituals to raise release confidence.",
     ],
-    badges: ["React", "Node.js", "TypeScript", "PostgreSQL", "Git"],
+    stack: ["React", "Node.js", "TypeScript", "Jest", "Agile"],
   },
 ];
 
-const formatPeriod = (start: Date, end: Date | null) => {
-  const s = format(start, "MMM yyyy");
-  const e = end ? format(end, "MMM yyyy") : "Present";
+const formatPeriod = (start: string, end: string | null) => {
+  const s = format(new Date(start), "MMM yyyy");
+  const e = end ? format(new Date(end), "MMM yyyy") : "Present";
   return `${s} — ${e}`;
 };
 
-const ExperienceCard = ({ exp, idx }: { exp: ExperienceItem; idx: number }) => {
-  const [open, setOpen] = useState(false);
-  const start = new Date(exp.startDate);
-  const end = exp.endDate ? new Date(exp.endDate) : null;
-
+const Experience = () => {
   return (
-    <div className="relative mb-12 flex w-full max-w-xl mx-auto">
-      {/* Timeline marker */}
-      <div className="absolute left-4 top-3">
-        <div className="w-3 h-3 bg-primary rounded-full border-2 border-dark"></div>
-      </div>
-      {/* Card */}
-      <div className="ml-10 p-6 bg-secondary/20 backdrop-blur rounded-2xl border border-secondary/50 hover:border-primary transition w-full">
-        <div className="flex items-center justify-between">
-          <div>
-            <h3 className="text-lg font-semibold text-foreground">
-              {exp.role}
-            </h3>
-            <p className="text-sm text-muted-foreground mt-1">{exp.company}</p>
-          </div>
-          <div className="flex items-center text-xs text-muted-foreground">
-            <Calendar className="w-4 h-4 mr-1 text-primary" />
-            <span>{formatPeriod(start, end)}</span>
-          </div>
-        </div>
-
-        <div className="mt-3 flex flex-wrap gap-2">
-          {exp.badges.map((b, i) => (
-            <Badge
-              key={i}
-              variant="subtle"
-              className="text-[11px] font-mono border-primary/30 bg-primary/10 text-primary"
-            >
-              {b}
-            </Badge>
-          ))}
-        </div>
-
-        <ul className="mt-4 text-sm text-foreground/80 space-y-1">
-          {/* Show first two achievements by default */}
-          {exp.achievements.slice(0, 2).map((a, i) => (
-            <li key={i}>{a}</li>
-          ))}
-        </ul>
-
-        {exp.achievements.length > 2 && (
-          <button
-            className="mt-2 text-xs font-medium text-primary hover:underline"
-            onClick={() => setOpen(true)}
-          >
-            +{exp.achievements.length - 2} more
-          </button>
-        )}
-
-        {/* Modal for full achievements */}
-        {open && (
-          <div className="fixed inset-0 flex items-center justify-center bg-dark/80">
-            <div className="bg-dark p-6 rounded-xl max-w-md w-full">
-              <h4 className="text-lg font-semibold mb-4 text-foreground">
-                Achievements
-              </h4>
-              <ul className="list-disc list-inside space-y-2 text-sm text-foreground/80">
-                {exp.achievements.map((a, i) => (
-                  <li key={i}>{a}</li>
-                ))}
-              </ul>
-              <button
-                className="mt-6 px-4 py-2 bg-primary rounded-full text-sm font-medium hover:opacity-90"
-                onClick={() => setOpen(false)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default function Experience() {
-  return (
-    <section id="experience" className="py-20 bg-dark">
+    <section id="experience" className="relative py-20">
+      <div className="absolute inset-x-0 top-0 -z-10 h-full bg-gradient-to-b from-[#f8fafc] via-white to-transparent dark:from-slate-950 dark:via-slate-900 dark:to-transparent" />
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-12 text-center text-gradient-primary">
-          Experience
-        </h2>
-        {/* Timeline container */}
-        <div className="relative">
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-secondary/50"></div>
-          <div className="space-y-0">
-            {experiences.map((exp, idx) => (
-              <ExperienceCard key={idx} exp={exp} idx={idx} />
-            ))}
-          </div>
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white md:text-4xl">
+            Experience snapshots
+          </h2>
+          <p className="mt-3 text-base text-slate-600 dark:text-slate-300">
+            Where AIOps, MLOps, DevOps, and backend intersect to unblock product teams.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
+          {experiences.map((exp) => (
+            <article
+              key={exp.company}
+              className="relative h-full rounded-[28px] border border-white/60 bg-white/80 p-8 shadow-xl backdrop-blur transition hover:-translate-y-1 hover:shadow-2xl dark:border-slate-800/60 dark:bg-slate-900/60"
+            >
+              <div className="flex flex-col gap-4 text-left">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                      {exp.role}
+                    </h3>
+                    <p className="text-sm font-medium uppercase tracking-[0.3em] text-primary">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-end text-xs text-slate-500 dark:text-slate-300">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 dark:bg-slate-800/70">
+                      <CalendarDays className="h-3.5 w-3.5 text-primary" />
+                      {formatPeriod(exp.startDate, exp.endDate)}
+                    </span>
+                    <span className="mt-2 inline-flex items-center gap-2">
+                      <MapPin className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500" />
+                      {exp.location}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  {exp.headline}
+                </p>
+
+                <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-200">
+                  {exp.achievements.map((achievement) => (
+                    <li key={achievement} className="flex items-start gap-2">
+                      <span className="mt-1 inline-block h-1.5 w-1.5 rounded-full bg-primary/80" />
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {exp.stack.map((item) => (
+                    <Badge
+                      key={item}
+                      variant="outline"
+                      className="rounded-full border-primary/30 bg-primary/5 text-xs text-primary dark:border-primary/40 dark:bg-primary/10 dark:text-primary/90"
+                    >
+                      {item}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Experience;
