@@ -1,91 +1,103 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
+import employeeOfMonth from '../assets/employee-of-month.png';
 
-const achievements = [
-  {
-    title: "AWS Cloud Quest: Cloud Practitioner",
-    type: "Certification",
-    description:
-      "Hands-on labs covering core AWS services, architecture best practices, and cost-aware design.",
-    year: "2024",
-    icon: "☁️",
-  },
-  {
-    title: "AWS Cloud Quest: Cloud Essentials",
-    type: "Certification",
-    description:
-      "Practical exploration of compute, storage, networking, and IAM fundamentals across AWS.",
-    year: "2024",
-    icon: "🛠️",
-  },
-  {
-    title: "Employee of the Month — “The Challenge Seeker”",
-    type: "Award",
-    description:
-      "Recognised at WebOsmotic for backend ownership, rapid iteration, and raising platform reliability.",
-    year: "2024",
-    icon: "🏆",
-  },
-  {
-    title: "Angela Yu Web Development Bootcamp",
-    type: "Certification",
-    description:
-      "Comprehensive full-stack programme spanning modern frontend, backend, and deployment workflows.",
-    year: "2022",
-    icon: "📚",
-  },
-];
+export const Certifications = () => {
+    const certifications = [
+        {
+            title: "AWS Cloud Quest: Generative AI Practitioner",
+            link: "https://www.credly.com/badges/019efbe7-c545-4de6-99cf-b45587f30951/linked_in_profile",
+            badge: "https://images.credly.com/images/15fa08e6-ca73-4fa3-94ed-c36f7f157313/blob",
+            color: "bg-white"
+        },
+        {
+            title: "MongoDB: Search with MongoDB",
+            link: "https://www.credly.com/badges/66883cdd-e909-4a6d-9117-5d74919ee482/linked_in_profile",
+            badge: "https://images.credly.com/images/b4ac66fd-9972-436e-b01e-c04aee2466de/blob",
+            color: "bg-white"
+        },
+        {
+            title: "MongoDB: AI-Powered Search Vector Search",
+            link: "https://www.credly.com/badges/b5b6feb5-403a-4282-8cc4-4caa600fa5b7/linked_in_profile",
+            badge: "https://images.credly.com/images/730e9c82-7869-4288-b580-9f8500a94465/blob",
+            color: "bg-white"
+        },
+        {
+            title: "AWS Cloud Quest: Cloud Practitioner",
+            link: "https://www.credly.com/badges/606d2fd5-6070-472b-b85a-17a4cabab7c2/linked_in_profile",
+            badge: "https://images.credly.com/images/30816e43-2550-4e1c-be22-3f03c5573bb9/blob",
+            color: "bg-white"
+        },
+        {
+            title: "Employee of the Month (WebOsmotic)",
+            link: "https://drive.google.com/file/d/18CCXyxOvrz2bpNTOOw7rcuNQ1RmYRZpd/view",
+            badge: employeeOfMonth,
+            color: "bg-white"
+        },
+        {
+            title: "AWS Fundamentals of ML & AI",
+            link: "https://drive.google.com/file/d/1h75fneLEfczamauyzlEg5lh1jv1Nqv_f/view",
+            badge: null,
+            icon: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+            color: "bg-white"
+        },
+        {
+            title: "Web Development Bootcamp",
+            link: "https://www.udemy.com/certificate/UC-59573590-40a6-4c8e-be8f-bba6c4b28cfd/",
+            badge: null,
+            icon: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg",
+            color: "bg-white"
+        }
+    ];
 
-const Certifications = () => {
-  return (
-    <section id="certifications" className="relative py-20">
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-full bg-gradient-to-t from-[#fde68a]/40 via-white to-transparent dark:from-slate-950/70 dark:via-slate-900 dark:to-transparent" />
-      <div className="container mx-auto px-6">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white md:text-4xl">
-            Certifications & recognition
-          </h2>
-          <p className="mt-3 text-base text-slate-600 dark:text-slate-300">
-            Continuous learning keeps my tooling sharp and my teams confident.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {achievements.map((item) => (
-            <Card
-              key={item.title}
-              className="h-full rounded-3xl border-white/60 bg-white/80 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800/60 dark:bg-slate-900/60"
+    return (
+        <section className="py-12 px-6 md:px-20 max-w-6xl mx-auto">
+            <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-3xl font-medium text-[#202124] mb-12 tracking-tight"
             >
-              <CardContent className="flex h-full flex-col gap-4 p-6">
-                <div className="flex items-start gap-3">
-                  <span className="text-3xl">{item.icon}</span>
-                  <div>
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
-                      {item.title}
-                    </h3>
-                    <div className="mt-2 inline-flex items-center gap-2">
-                      <Badge
-                        variant="outline"
-                        className="rounded-full border-primary/30 bg-primary/5 text-xs text-primary dark:border-primary/40 dark:bg-primary/10 dark:text-primary/90"
-                      >
-                        {item.type}
-                      </Badge>
-                      <span className="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                        {item.year}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                  {item.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+                Certifications
+            </motion.h2>
 
-export default Certifications;
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {certifications.map((cert, index) => (
+                    <motion.a
+                        key={index}
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ y: -5, shadow: "0 10px 30px -10px rgba(0,0,0,0.1)" }}
+                        className="flex flex-col items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-300 group h-full hover:border-blue-100"
+                    >
+                        {/* Badge Image Area */}
+                        <div className={`w-32 h-32 mb-4 flex items-center justify-center ${cert.color} group-hover:scale-105 transition-transform duration-300 p-2 rounded-xl`}>
+                            {cert.badge ? (
+                                <img src={cert.badge} alt={cert.title} className="w-full h-full object-contain drop-shadow-sm" />
+                            ) : (
+                                <img src={cert.icon} alt={cert.title} className="w-full h-full object-contain" />
+                            )}
+                        </div>
+
+                        {/* Content */}
+                        <div className="text-center flex-grow flex flex-col justify-between w-full">
+                            <h3 className="text-base font-medium text-[#202124] mb-1 leading-snug group-hover:text-[#1a73e8] transition-colors">
+                                {cert.title}
+                            </h3>
+
+                            <div className="mt-3 flex items-center justify-center gap-2 text-xs font-medium text-[#1a73e8] opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-1 group-hover:translate-y-0">
+                                View Credential <ExternalLink size={12} />
+                            </div>
+                        </div>
+                    </motion.a>
+                ))}
+            </div>
+        </section>
+    );
+};
