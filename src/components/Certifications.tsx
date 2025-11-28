@@ -73,7 +73,7 @@ export const Certifications = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1 }}
-                        whileHover={{ y: -5, shadow: "0 10px 30px -10px rgba(0,0,0,0.1)" }}
+                        whileHover={{ y: -5 }}
                         className="flex flex-col items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-300 group h-full hover:border-blue-100"
                     >
                         {/* Badge Image Area */}

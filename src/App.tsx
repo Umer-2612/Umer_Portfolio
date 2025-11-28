@@ -8,6 +8,8 @@ import { Certifications } from './components/Certifications';
 import { Achievements } from './components/Achievements';
 import { Contact } from './components/Contact';
 
+import { Insights } from './components/Insights';
+
 function App() {
   return (
     <div className="min-h-screen bg-white">
@@ -16,6 +18,7 @@ function App() {
         <div className="hidden md:flex gap-6 text-sm font-medium text-[#5f6368]">
           <a href="#experience" className="hover:text-[#1a73e8] transition-colors">Experience</a>
           <a href="#projects" className="hover:text-[#1a73e8] transition-colors">Projects</a>
+          <a href="#insights" className="hover:text-[#1a73e8] transition-colors">Insights</a>
           <a href="#skills" className="hover:text-[#1a73e8] transition-colors">Skills</a>
           <a href="#education" className="hover:text-[#1a73e8] transition-colors">Education</a>
           <a href="#certifications" className="hover:text-[#1a73e8] transition-colors">Certifications</a>
@@ -27,6 +30,7 @@ function App() {
         <Hero />
         <div id="experience"><Experience /></div>
         <div id="projects"><Projects /></div>
+        <div id="insights"><Insights /></div>
         <div id="skills"><Skills /></div>
         <div id="education"><Education /></div>
         <div id="certifications"><Certifications /></div>
