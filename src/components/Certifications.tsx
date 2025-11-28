@@ -30,6 +30,12 @@ export const Certifications = () => {
             color: "bg-white"
         },
         {
+            title: "AWS Cloud Quest: Cloud Essentials",
+            link: "https://www.credly.com/badges/606d2fd5-6070-472b-b85a-17a4cabab7c2/linked_in_profile",
+            badge: "https://images.credly.com/size/680x680/images/7cf036b0-c609-4378-a7be-9969e1dea7ab/blob",
+            color: "bg-white"
+        },
+        {
             title: "Employee of the Month (WebOsmotic)",
             link: "https://drive.google.com/file/d/18CCXyxOvrz2bpNTOOw7rcuNQ1RmYRZpd/view",
             badge: employeeOfMonth,
