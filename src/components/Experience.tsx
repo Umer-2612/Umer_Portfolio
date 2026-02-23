@@ -9,6 +9,16 @@ export const Experience = () => {
 
     const experiences = [
         {
+            company: "Apple",
+            role: "Software Engineering Intern",
+            // period: "Incoming...",
+            // logo: webosmoticLogo,
+            link: "https://webosmotic.com/",
+            details: [
+                "Will be joining IS&T division at Apple soon...."
+            ]
+        },
+        {
             company: "WebOsmotic Private Limited",
             role: "Jr Backend Engineer",
             period: "Oct 2023 – Jun 2025",
@@ -26,18 +36,18 @@ export const Experience = () => {
                 "Collaborated across product, frontend, and DevOps teams, contributing to feature design, architecture discussions, and cloud deployments."
             ]
         },
-        {
-            company: "CodeIn Bound",
-            role: "Software Engineer Intern",
-            period: "Mar 2023 – Jun 2023",
-            logo: codeinboundLogo,
-            link: "https://www.codeinbound.com/",
-            details: [
-                "Developed backend APIs for network insights with data preprocessing and feature extraction using Python and Pandas.",
-                "Integrated model outputs into APIs for predictive latency insights.",
-                "Participated in experimentation, performance evaluation, and production deployment cycles."
-            ]
-        }
+        // {
+        //     company: "CodeIn Bound",
+        //     role: "Software Engineer Intern",
+        //     period: "Mar 2023 – Jun 2023",
+        //     logo: codeinboundLogo,
+        //     link: "https://www.codeinbound.com/",
+        //     details: [
+        //         "Developed backend APIs for network insights with data preprocessing and feature extraction using Python and Pandas.",
+        //         "Integrated model outputs into APIs for predictive latency insights.",
+        //         "Participated in experimentation, performance evaluation, and production deployment cycles."
+        //     ]
+        // }
     ];
 
     return (
@@ -59,8 +69,8 @@ export const Experience = () => {
                             key={index}
                             onClick={() => setActiveTab(index)}
                             className={`text-left px-4 py-3 rounded-xl transition-all duration-300 whitespace-nowrap flex items-center gap-3 border ${activeTab === index
-                                    ? 'bg-[#e8f0fe] text-[#1a73e8] font-medium border-blue-100'
-                                    : 'text-[#5f6368] hover:bg-gray-50 border-transparent'
+                                ? 'bg-[#e8f0fe] text-[#1a73e8] font-medium border-blue-100'
+                                : 'text-[#5f6368] hover:bg-gray-50 border-transparent'
                                 }`}
                         >
                             <img src={exp.logo} alt={exp.company} className="w-6 h-6 rounded-full object-cover" />
