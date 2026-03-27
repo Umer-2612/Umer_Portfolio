@@ -6,8 +6,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { 
-    device, browser, ip, location, sourceUrl, screenSize, language, userAgent,
+  const {
+    device, browser, ip, location, sourceUrl, referrer, screenSize, language, userAgent,
     name, email, org, postal, timezone, asn, latitude, longitude
   } = req.body;
 
@@ -82,6 +82,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             <tr>
               <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Page Visited</td>
               <td style="padding: 8px; border: 1px solid #ddd;"><a href="${sourceUrl}">${sourceUrl || 'Unknown'}</a></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Referred From</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${referrer && referrer !== 'Direct Visit' ? `<a href="${referrer}">${referrer}</a>` : 'Direct Visit'}</td>
             </tr>
             <tr>
               <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Time</td>
