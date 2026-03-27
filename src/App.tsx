@@ -9,8 +9,11 @@ import { Achievements } from './components/Achievements';
 import { Contact } from './components/Contact';
 
 import { Insights } from './components/Insights';
+import { useVisitorTracker } from './hooks/useVisitorTracker';
 
 function App() {
+  useVisitorTracker();
+
   return (
     <div className="min-h-screen bg-white">
       <nav className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center bg-white/80 backdrop-blur-sm z-50 border-b border-gray-100">
