@@ -16,6 +16,7 @@ export function useVisitorTracker() {
 
       let ip = 'Unknown';
       let location = 'Unknown';
+      let networkData: any = {};
 
       // Try to get IP and Location
       try {
@@ -23,6 +24,7 @@ export function useVisitorTracker() {
         if (res.ok) {
           const data = await res.json();
           ip = data.ip || 'Unknown';
+          networkData = data;
           // Filter out missing parts to just get City, Country
           const parts = [data.city, data.region, data.country_name].filter(Boolean);
           if (parts.length > 0) {
@@ -59,7 +61,13 @@ export function useVisitorTracker() {
         sourceUrl: window.location.href,
         screenSize: `${window.screen.width}x${window.screen.height}`,
         language: navigator.language,
-        userAgent
+        userAgent,
+        org: networkData.org,
+        postal: networkData.postal,
+        timezone: networkData.timezone,
+        asn: networkData.asn,
+        latitude: networkData.latitude,
+        longitude: networkData.longitude,
       };
 
       // Send to our Vercel Serverless Function

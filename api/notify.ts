@@ -6,7 +6,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { device, browser, ip, location, sourceUrl, screenSize, language, userAgent } = req.body;
+  const { 
+    device, browser, ip, location, sourceUrl, screenSize, language, userAgent,
+    name, email, org, postal, timezone, asn, latitude, longitude
+  } = req.body;
 
   try {
     // Configure the transporter
@@ -28,6 +31,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           <h2 style="color: #4A90E2;">New Visitor Alert 🚀</h2>
           <p>Someone just visited your portfolio site.</p>
           <table style="width: 100%; max-width: 600px; border-collapse: collapse; margin-top: 15px;">
+            ${name ? `<tr>
+              <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; width: 30%;">Name</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${name}</td>
+            </tr>` : ''}
+            ${email ? `<tr>
+              <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; width: 30%;">Email</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${email}</td>
+            </tr>` : ''}
             <tr>
               <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; width: 30%;">IP Address</td>
               <td style="padding: 8px; border: 1px solid #ddd;">${ip || 'Unknown'}</td>
@@ -35,6 +46,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             <tr>
               <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Location</td>
               <td style="padding: 8px; border: 1px solid #ddd;">${location || 'Unknown'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Lat / Long</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${latitude && longitude ? `${latitude}, ${longitude}` : 'Unknown'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Timezone</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${timezone || 'Unknown'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Postal Code</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${postal || 'Unknown'}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">ISP / Org</td>
+              <td style="padding: 8px; border: 1px solid #ddd;">${org || 'Unknown'} (${asn || 'Unknown'})</td>
             </tr>
             <tr>
               <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Device / OS</td>
