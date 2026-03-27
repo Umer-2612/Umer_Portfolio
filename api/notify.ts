@@ -31,14 +31,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           <h2 style="color: #4A90E2;">New Visitor Alert 🚀</h2>
           <p>Someone just visited your portfolio site.</p>
           <table style="width: 100%; max-width: 600px; border-collapse: collapse; margin-top: 15px;">
-            ${name ? `<tr>
+            <tr>
               <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; width: 30%;">Name</td>
-              <td style="padding: 8px; border: 1px solid #ddd;">${name}</td>
-            </tr>` : ''}
-            ${email ? `<tr>
+              <td style="padding: 8px; border: 1px solid #ddd;">${name || 'Not Provided (Requires Form Input)'}</td>
+            </tr>
+            <tr>
               <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; width: 30%;">Email</td>
-              <td style="padding: 8px; border: 1px solid #ddd;">${email}</td>
-            </tr>` : ''}
+              <td style="padding: 8px; border: 1px solid #ddd;">${email || 'Not Provided (Requires Form Input)'}</td>
+            </tr>
             <tr>
               <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; width: 30%;">IP Address</td>
               <td style="padding: 8px; border: 1px solid #ddd;">${ip || 'Unknown'}</td>
