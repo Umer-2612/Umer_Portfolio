@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import employeeOfMonth from '../assets/employee-of-month.png';
 
 export const Certifications = () => {
     const certifications = [
@@ -36,12 +35,6 @@ export const Certifications = () => {
             color: "bg-white"
         },
         {
-            title: "Employee of the Month (WebOsmotic)",
-            link: "https://drive.google.com/file/d/18CCXyxOvrz2bpNTOOw7rcuNQ1RmYRZpd/view",
-            badge: employeeOfMonth,
-            color: "bg-white"
-        },
-        {
             title: "AWS Fundamentals of ML & AI",
             link: "https://drive.google.com/file/d/1h75fneLEfczamauyzlEg5lh1jv1Nqv_f/view",
             badge: null,
@@ -58,51 +51,53 @@ export const Certifications = () => {
     ];
 
     return (
-        <section className="py-12 px-6 md:px-20 max-w-6xl mx-auto">
-            <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-3xl font-medium text-[#202124] mb-12 tracking-tight"
-            >
-                Certifications
-            </motion.h2>
+        <section className="section-padding">
+            <div className="section-container">
+                <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-2xl sm:text-3xl lg:text-4xl 3xl:text-5xl font-semibold text-[#202124] mb-8 sm:mb-10 lg:mb-12 tracking-tight"
+                >
+                    Certifications
+                </motion.h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {certifications.map((cert, index) => (
-                    <motion.a
-                        key={index}
-                        href={cert.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        whileHover={{ y: -5 }}
-                        className="flex flex-col items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm transition-all duration-300 group h-full hover:border-blue-100"
-                    >
-                        {/* Badge Image Area */}
-                        <div className={`w-32 h-32 mb-4 flex items-center justify-center ${cert.color} group-hover:scale-105 transition-transform duration-300 p-2 rounded-xl`}>
-                            {cert.badge ? (
-                                <img src={cert.badge} alt={cert.title} className="w-full h-full object-contain drop-shadow-sm" />
-                            ) : (
-                                <img src={cert.icon} alt={cert.title} className="w-full h-full object-contain" />
-                            )}
-                        </div>
-
-                        {/* Content */}
-                        <div className="text-center flex-grow flex flex-col justify-between w-full">
-                            <h3 className="text-base font-medium text-[#202124] mb-1 leading-snug group-hover:text-[#1a73e8] transition-colors">
-                                {cert.title}
-                            </h3>
-
-                            <div className="mt-3 flex items-center justify-center gap-2 text-xs font-medium text-[#1a73e8] opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-1 group-hover:translate-y-0">
-                                View Credential <ExternalLink size={12} />
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 3xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6">
+                    {certifications.map((cert, index) => (
+                        <motion.a
+                            key={index}
+                            href={cert.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.08 }}
+                            whileHover={{ y: -5 }}
+                            className="flex flex-col items-center p-3 sm:p-4 lg:p-6 bg-white rounded-xl sm:rounded-2xl border border-gray-100 shadow-sm transition-all duration-300 group h-full hover:border-blue-100 hover:shadow-md"
+                        >
+                            {/* Badge Image Area */}
+                            <div className={`w-16 h-16 sm:w-24 sm:h-24 lg:w-28 lg:h-28 3xl:w-32 3xl:h-32 mb-2 sm:mb-3 lg:mb-4 flex items-center justify-center ${cert.color} group-hover:scale-105 transition-transform duration-300 p-1 sm:p-2 rounded-lg sm:rounded-xl`}>
+                                {cert.badge ? (
+                                    <img src={cert.badge} alt={cert.title} className="w-full h-full object-contain drop-shadow-sm" />
+                                ) : (
+                                    <img src={cert.icon} alt={cert.title} className="w-full h-full object-contain" />
+                                )}
                             </div>
-                        </div>
-                    </motion.a>
-                ))}
+
+                            {/* Content */}
+                            <div className="text-center flex-grow flex flex-col justify-between w-full">
+                                <h3 className="text-[11px] xs:text-xs sm:text-sm lg:text-base 3xl:text-lg font-medium text-[#202124] mb-1 leading-snug group-hover:text-[#1a73e8] transition-colors">
+                                    {cert.title}
+                                </h3>
+
+                                <div className="mt-2 sm:mt-3 flex items-center justify-center gap-1 sm:gap-2 text-[9px] sm:text-xs font-medium text-[#1a73e8] opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-1 group-hover:translate-y-0">
+                                    View <ExternalLink size={10} className="sm:w-3 sm:h-3" />
+                                </div>
+                            </div>
+                        </motion.a>
+                    ))}
+                </div>
             </div>
         </section>
     );
