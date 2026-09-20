@@ -25,6 +25,15 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+
+  <!-- Apply saved theme before paint to avoid a flash of the wrong theme -->
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var isDark = stored ? stored === 'dark' : true;
+      document.documentElement.classList.toggle('dark', isDark);
+    })();
+  </script>
 </head>
 
 <body>

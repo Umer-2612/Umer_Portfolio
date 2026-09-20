@@ -37,7 +37,7 @@ export const Skills = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl sm:text-3xl lg:text-4xl 3xl:text-5xl font-semibold text-[#202124] mb-8 sm:mb-10 lg:mb-12 tracking-tight"
+                    className="text-3xl sm:text-4xl lg:text-5xl 3xl:text-6xl font-bold tracking-tighter text-foreground mb-8 sm:mb-10 lg:mb-12"
                 >
                     Skills
                 </motion.h2>
@@ -50,14 +50,14 @@ export const Skills = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: catIndex * 0.08 }}
-                            className="bg-white border border-gray-100 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover:shadow-md hover:border-gray-200 transition-all duration-300 group"
+                            className="bg-card border border-border rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover:border-primary/30 hover:shadow-md dark:hover:shadow-[0_0_30px_-10px_hsl(var(--primary)/0.35)] transition-all duration-300 group"
                         >
                             {/* Category Header */}
                             <div className="flex items-center gap-2.5 mb-3 sm:mb-4">
                                 <div className={`p-1.5 sm:p-2 rounded-lg bg-gradient-to-br ${categoryColors[category]} text-white`}>
                                     {categoryIcons[category]}
                                 </div>
-                                <h3 className="text-sm sm:text-base 3xl:text-lg font-semibold text-[#202124]">
+                                <h3 className="text-sm sm:text-base 3xl:text-lg font-semibold text-foreground">
                                     {category}
                                 </h3>
                             </div>
@@ -71,8 +71,13 @@ export const Skills = () => {
                                         whileInView={{ opacity: 1, scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: catIndex * 0.05 + index * 0.02 }}
-                                        whileHover={{ scale: 1.05, backgroundColor: "#e8f0fe", color: "#1a73e8", borderColor: "#1a73e8" }}
-                                        className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-50 text-[#5f6368] rounded-full text-[11px] sm:text-xs 3xl:text-sm font-medium border border-gray-100 cursor-default transition-colors"
+                                        whileHover={{
+                                            scale: 1.05,
+                                            backgroundColor: "hsl(var(--accent))",
+                                            color: "hsl(var(--primary))",
+                                            borderColor: "hsl(var(--primary))",
+                                        }}
+                                        className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-muted text-muted-foreground rounded-full text-[11px] sm:text-xs 3xl:text-sm font-medium border border-border cursor-default transition-colors"
                                     >
                                         {skill}
                                     </motion.span>

@@ -4,9 +4,8 @@ export function useVisitorTracker() {
   const tracked = useRef(false);
 
   useEffect(() => {
-    // Only track once per session and only in production to avoid local dev spam, 
-    // unless you want to test it locally (can temporarily override).
-    if (tracked.current || sessionStorage.getItem('visitor_tracked')) {
+    // Only track once per session, and never in local dev, to avoid spamming the notify email.
+    if (!import.meta.env.PROD || tracked.current || sessionStorage.getItem('visitor_tracked')) {
       return;
     }
 

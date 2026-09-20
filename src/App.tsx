@@ -10,7 +10,8 @@ import { Contact } from './components/Contact';
 
 import { Insights } from './components/Insights';
 import { useVisitorTracker } from './hooks/useVisitorTracker';
-import { Menu, X } from 'lucide-react';
+import { useTheme } from './hooks/useTheme';
+import { Menu, Moon, Sun, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
@@ -25,6 +26,7 @@ const navLinks = [
 
 function App() {
   useVisitorTracker();
+  const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -45,41 +47,57 @@ function App() {
   }, [mobileMenuOpen]);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100' 
-          : 'bg-white/60 backdrop-blur-sm'
+        scrolled
+          ? 'bg-background/90 backdrop-blur-md shadow-sm border-b border-border'
+          : 'bg-background/60 backdrop-blur-sm'
       }`}>
         <div className="section-container flex justify-between items-center py-3 sm:py-4">
-          <a href="#" className="text-base sm:text-lg font-semibold text-[#202124] tracking-tight hover:text-[#1a73e8] transition-colors">
+          <a href="#" className="text-base sm:text-lg font-semibold text-foreground tracking-tight hover:text-primary transition-colors">
             Umer Karachiwala
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex gap-4 lg:gap-6 xl:gap-8 text-sm font-medium text-[#5f6368]">
+          <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8 text-sm font-medium text-muted-foreground">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="hover:text-[#1a73e8] transition-colors relative group py-1"
+                className="hover:text-primary transition-colors relative group py-1"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#1a73e8] transition-all duration-300 group-hover:w-full rounded-full" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full rounded-full" />
               </a>
             ))}
+            <button
+              onClick={toggleTheme}
+              className="p-2 -m-2 text-muted-foreground hover:text-primary hover:bg-muted rounded-xl transition-colors"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            id="mobile-menu-toggle"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 -mr-2 text-[#5f6368] hover:text-[#1a73e8] hover:bg-gray-50 rounded-xl transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          {/* Mobile Controls */}
+          <div className="flex items-center gap-1 md:hidden">
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-muted-foreground hover:text-primary hover:bg-muted rounded-xl transition-colors"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              id="mobile-menu-toggle"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 -mr-2 text-muted-foreground hover:text-primary hover:bg-muted rounded-xl transition-colors"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -104,14 +122,14 @@ function App() {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed top-0 right-0 bottom-0 w-72 xs:w-80 z-50 bg-white shadow-2xl md:hidden"
+            className="fixed top-0 right-0 bottom-0 w-72 xs:w-80 z-50 bg-background shadow-2xl md:hidden"
           >
             <div className="flex flex-col h-full">
-              <div className="flex items-center justify-between p-5 border-b border-gray-100">
-                <span className="text-base font-semibold text-[#202124]">Menu</span>
+              <div className="flex items-center justify-between p-5 border-b border-border">
+                <span className="text-base font-semibold text-foreground">Menu</span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 -mr-2 text-[#5f6368] hover:text-[#1a73e8] hover:bg-gray-50 rounded-xl transition-colors"
+                  className="p-2 -mr-2 text-muted-foreground hover:text-primary hover:bg-muted rounded-xl transition-colors"
                   aria-label="Close menu"
                 >
                   <X size={20} />
@@ -126,16 +144,16 @@ function App() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    className="text-[#5f6368] hover:text-[#1a73e8] hover:bg-[#e8f0fe] font-medium py-3 px-4 rounded-xl transition-all text-[15px]"
+                    className="text-muted-foreground hover:text-primary hover:bg-accent font-medium py-3 px-4 rounded-xl transition-all text-[15px]"
                   >
                     {link.label}
                   </motion.a>
                 ))}
               </div>
-              <div className="p-5 border-t border-gray-100">
+              <div className="p-5 border-t border-border">
                 <a
                   href="mailto:karachiwalaumer2612@gmail.com"
-                  className="block w-full text-center bg-[#1a73e8] text-white font-medium py-3 rounded-xl hover:bg-[#1557b0] transition-colors text-sm"
+                  className="block w-full text-center bg-primary text-primary-foreground font-medium py-3 rounded-xl hover:bg-primary-hover transition-colors text-sm"
                 >
                   Get in Touch
                 </a>
@@ -158,8 +176,8 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-100 py-6 sm:py-8">
-        <div className="section-container text-center text-xs sm:text-sm text-[#9aa0a6]">
+      <footer className="border-t border-border py-6 sm:py-8">
+        <div className="section-container text-center text-xs sm:text-sm text-muted-foreground/70">
           © {new Date().getFullYear()} Umer Karachiwala. Built with React & Tailwind.
         </div>
       </footer>

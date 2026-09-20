@@ -18,21 +18,21 @@ export const Insights = () => {
             excerpt: "How does Instagram handle billions of photos? A simple look at their architecture: sharding databases to store data, using caches to load photos fast, and load balancers to keep the app running smoothly.",
             date: "Nov 28, 2025",
             readTime: "5 min read",
-            color: "bg-pink-50 text-pink-600",
+            color: "bg-pink-50 text-pink-600 dark:bg-pink-950/40 dark:text-pink-400",
             content: (
-                <div className="space-y-6 text-[#3c4043]">
+                <div className="space-y-6 text-foreground/90">
                     <p className="text-base sm:text-lg leading-relaxed">
                         Instagram is a read-heavy system. For every photo uploaded, it's viewed thousands of times. This requires an architecture optimized for <strong>fast retrieval</strong> and <strong>high availability</strong>.
                     </p>
 
-                    <div className="bg-gray-50 p-4 sm:p-6 rounded-xl border border-gray-100">
-                        <h4 className="text-base sm:text-lg font-medium text-[#202124] mb-3">The Core Challenge</h4>
+                    <div className="bg-muted p-4 sm:p-6 rounded-xl border border-border">
+                        <h4 className="text-base sm:text-lg font-medium text-foreground mb-3">The Core Challenge</h4>
                         <p className="text-sm sm:text-base">
                             Storing billions of photos and serving them instantly to millions of users globally. A single database cannot handle this load.
                         </p>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-medium text-[#202124] mt-8">1. Sharding (Splitting Data)</h3>
+                    <h3 className="text-lg sm:text-xl font-medium text-foreground mt-8">1. Sharding (Splitting Data)</h3>
                     <p className="text-sm sm:text-base">
                         Imagine a giant phone book. It's too heavy to carry. So, you split it into volumes (A-D, E-K, etc.). That's <strong>Sharding</strong>.
                     </p>
@@ -42,7 +42,7 @@ export const Insights = () => {
                         <li>This allows them to add more servers easily as they grow.</li>
                     </ul>
 
-                    <h3 className="text-lg sm:text-xl font-medium text-[#202124] mt-8">2. Caching (Speed)</h3>
+                    <h3 className="text-lg sm:text-xl font-medium text-foreground mt-8">2. Caching (Speed)</h3>
                     <p className="text-sm sm:text-base">
                         Reading from a hard drive (database) is slow. Reading from memory (RAM) is fast.
                     </p>
@@ -50,7 +50,7 @@ export const Insights = () => {
                         Instagram uses <strong>Memcached</strong> to store popular photos in RAM. When you open the app, it checks the cache first. If the photo is there, it loads instantly. If not, it goes to the database.
                     </p>
 
-                    <h3 className="text-lg sm:text-xl font-medium text-[#202124] mt-8">3. Load Balancing (Traffic Control)</h3>
+                    <h3 className="text-lg sm:text-xl font-medium text-foreground mt-8">3. Load Balancing (Traffic Control)</h3>
                     <p className="text-sm sm:text-base">
                         Think of a Load Balancer as a traffic cop. It stands in front of the servers and directs user requests to the server that is least busy. This prevents any single server from crashing under too much traffic.
                     </p>
@@ -66,7 +66,7 @@ export const Insights = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl sm:text-3xl lg:text-4xl 3xl:text-5xl font-semibold text-[#202124] mb-8 sm:mb-10 lg:mb-12 tracking-tight"
+                    className="text-3xl sm:text-4xl lg:text-5xl 3xl:text-6xl font-bold tracking-tighter text-foreground mb-8 sm:mb-10 lg:mb-12"
                 >
                     Insights
                 </motion.h2>
@@ -82,10 +82,10 @@ export const Insights = () => {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             whileHover={{ y: -5 }}
-                            className="group block bg-white rounded-xl sm:rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col cursor-pointer"
+                            className="group block bg-card rounded-xl sm:rounded-2xl border border-border overflow-hidden hover:border-primary/30 hover:shadow-lg dark:hover:shadow-[0_0_30px_-10px_hsl(var(--primary)/0.35)] transition-all duration-300 h-full flex flex-col cursor-pointer"
                         >
                             {/* Image Area */}
-                            <motion.div layoutId={`image-${article.id}`} className="h-40 sm:h-48 lg:h-56 w-full bg-white p-4 sm:p-6 flex items-center justify-center border-b border-gray-50">
+                            <motion.div layoutId={`image-${article.id}`} className="h-40 sm:h-48 lg:h-56 w-full bg-card p-4 sm:p-6 flex items-center justify-center border-b border-border">
                                 <img src={article.cardImage} alt={article.title} className="h-full w-full object-contain" />
                             </motion.div>
 
@@ -96,21 +96,21 @@ export const Insights = () => {
                                         {article.icon}
                                         {article.category}
                                     </div>
-                                    <span className="text-[10px] sm:text-xs text-[#5f6368]">{article.readTime}</span>
+                                    <span className="text-[10px] sm:text-xs text-muted-foreground">{article.readTime}</span>
                                 </div>
 
                                 {/* Content */}
-                                <motion.h3 layoutId={`title-${article.id}`} className="text-base sm:text-lg lg:text-xl 3xl:text-2xl font-semibold text-[#202124] mb-2 sm:mb-3 group-hover:text-[#1a73e8] transition-colors leading-snug">
+                                <motion.h3 layoutId={`title-${article.id}`} className="text-base sm:text-lg lg:text-xl 3xl:text-2xl font-semibold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors leading-snug">
                                     {article.title}
                                 </motion.h3>
-                                <p className="text-[#5f6368] text-xs sm:text-sm 3xl:text-base leading-relaxed mb-4 sm:mb-6 flex-grow">
+                                <p className="text-muted-foreground text-xs sm:text-sm 3xl:text-base leading-relaxed mb-4 sm:mb-6 flex-grow">
                                     {article.excerpt}
                                 </p>
 
                                 {/* Footer */}
-                                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-50 mt-auto">
-                                    <span className="text-[10px] sm:text-xs text-[#9aa0a6] font-medium">{article.date}</span>
-                                    <div className="flex items-center gap-1 text-xs sm:text-sm font-medium text-[#1a73e8] opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0">
+                                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
+                                    <span className="text-[10px] sm:text-xs text-muted-foreground/70 font-medium">{article.date}</span>
+                                    <div className="flex items-center gap-1 text-xs sm:text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0">
                                         Read <ArrowRight size={14} />
                                     </div>
                                 </div>
@@ -133,22 +133,22 @@ export const Insights = () => {
                             <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 pointer-events-none">
                                 <motion.div
                                     layoutId={`card-${selectedArticle.id}`}
-                                    className="bg-white w-full max-w-3xl max-h-[90vh] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
+                                    className="bg-card w-full max-w-3xl max-h-[90vh] rounded-2xl sm:rounded-3xl shadow-2xl dark:shadow-[0_0_60px_-15px_hsl(var(--primary)/0.3)] border border-border overflow-hidden flex flex-col pointer-events-auto"
                                 >
                                     {/* Modal Header Image */}
-                                    <motion.div layoutId={`image-${selectedArticle.id}`} className="h-48 sm:h-64 lg:h-80 w-full bg-white p-4 sm:p-6 lg:p-8 flex items-center justify-center border-b border-gray-100 shrink-0 relative">
+                                    <motion.div layoutId={`image-${selectedArticle.id}`} className="h-48 sm:h-64 lg:h-80 w-full bg-card p-4 sm:p-6 lg:p-8 flex items-center justify-center border-b border-border shrink-0 relative">
                                         <button
                                             onClick={(e) => { e.stopPropagation(); setSelectedArticle(null); }}
-                                            className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 bg-white rounded-full shadow-sm hover:bg-gray-100 transition-colors z-10 border border-gray-100"
+                                            className="absolute top-3 right-3 sm:top-4 sm:right-4 p-1.5 sm:p-2 bg-card rounded-full shadow-sm hover:bg-muted transition-colors z-10 border border-border"
                                         >
-                                            <X size={18} className="sm:w-5 sm:h-5 text-[#5f6368]" />
+                                            <X size={18} className="sm:w-5 sm:h-5 text-muted-foreground" />
                                         </button>
                                         <img src={selectedArticle.modalImage} alt={selectedArticle.title} className="h-full w-full object-contain" />
                                     </motion.div>
 
                                     {/* Modal Content */}
                                     <div className="overflow-y-auto p-5 sm:p-6 md:p-8 lg:p-10">
-                                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 sm:mb-6 text-xs sm:text-sm text-[#5f6368]">
+                                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4 sm:mb-6 text-xs sm:text-sm text-muted-foreground">
                                             <span className={`px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-medium flex items-center gap-1.5 sm:gap-2 ${selectedArticle.color}`}>
                                                 {selectedArticle.icon}
                                                 {selectedArticle.category}
@@ -157,11 +157,11 @@ export const Insights = () => {
                                             <span className="flex items-center gap-1"><Clock size={13} /> {selectedArticle.readTime}</span>
                                         </div>
 
-                                        <motion.h2 layoutId={`title-${selectedArticle.id}`} className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-[#202124] mb-6 sm:mb-8 leading-tight">
+                                        <motion.h2 layoutId={`title-${selectedArticle.id}`} className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-6 sm:mb-8 leading-tight">
                                             {selectedArticle.title}
                                         </motion.h2>
 
-                                        <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-[#5f6368]">
+                                        <div className="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-muted-foreground">
                                             {selectedArticle.content}
                                         </div>
                                     </div>

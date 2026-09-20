@@ -27,7 +27,7 @@ export const Education = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl sm:text-3xl lg:text-4xl 3xl:text-5xl font-semibold text-[#202124] mb-8 sm:mb-10 lg:mb-12 tracking-tight"
+                    className="text-3xl sm:text-4xl lg:text-5xl 3xl:text-6xl font-bold tracking-tighter text-foreground mb-8 sm:mb-10 lg:mb-12"
                 >
                     Education
                 </motion.h2>
@@ -42,22 +42,22 @@ export const Education = () => {
                             transition={{ delay: index * 0.1 }}
                             className="flex gap-3 sm:gap-4 lg:gap-6 items-start group"
                         >
-                            <div className="mt-0.5 sm:mt-1 p-2 sm:p-3 bg-blue-50 text-[#1a73e8] rounded-full shrink-0 group-hover:bg-[#1a73e8] group-hover:text-white transition-colors">
+                            <div className="mt-0.5 sm:mt-1 p-2 sm:p-3 bg-primary/10 text-primary rounded-full shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                                 <GraduationCap size={20} className="sm:w-6 sm:h-6" />
                             </div>
                             <div className="min-w-0">
-                                <h3 className="text-base sm:text-lg lg:text-xl 3xl:text-2xl font-semibold text-[#202124] leading-snug">
+                                <h3 className="text-base sm:text-lg lg:text-xl 3xl:text-2xl font-semibold text-foreground leading-snug">
                                     {edu.school}
                                 </h3>
-                                <p className="text-[#5f6368] text-sm sm:text-base 3xl:text-lg mb-1">{edu.degree}</p>
-                                <div className="flex flex-wrap gap-x-2 sm:gap-x-4 gap-y-0.5 text-xs sm:text-sm text-[#5f6368] opacity-80">
+                                <p className="text-muted-foreground text-sm sm:text-base 3xl:text-lg mb-1">{edu.degree}</p>
+                                <div className="flex flex-wrap gap-x-2 sm:gap-x-4 gap-y-0.5 text-xs sm:text-sm text-muted-foreground opacity-80">
                                     <span>{edu.location}</span>
                                     <span className="hidden xs:inline">•</span>
                                     <span>{edu.period}</span>
                                     {edu.grade && (
                                         <>
                                             <span className="hidden xs:inline">•</span>
-                                            <span className="font-medium text-[#1a73e8]">{edu.grade}</span>
+                                            <span className="font-medium text-primary">{edu.grade}</span>
                                         </>
                                     )}
                                 </div>
