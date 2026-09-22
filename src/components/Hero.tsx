@@ -71,7 +71,7 @@ export const Hero = () => {
             </span>
             <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground bg-muted border border-border px-3 py-1.5 rounded-full">
               <MapPin size={14} />
-              Cork, Ireland
+              Dublin, Ireland
             </span>
             {['Azure & AWS', 'AI Pipelines', 'Distributed Systems'].map((chip) => (
               <span key={chip} className="text-xs sm:text-sm text-muted-foreground bg-muted border border-border px-3 py-1.5 rounded-full">

@@ -1,7 +1,7 @@
 export const meta = {
   name: "Umer Karachiwala",
   title: "Backend & Cloud Engineer",
-  location: "Cork, Ireland",
+  location: "Dublin, Ireland",
   email: "karachiwalaumer2612@gmail.com",
   phone: "+353 0896591216",
   socials: [
@@ -13,12 +13,12 @@ export const meta = {
 export const hero = {
   headline: "Backend & Cloud Engineer building resilient systems and AI automation.",
   subheadline:
-    "Backend engineer with 2+ years of experience shipping production systems across distributed infrastructure, real-time AI pipelines, and large-scale platform tooling. Currently at Apple.",
+    "Backend engineer with 2+ years of experience shipping production systems across distributed infrastructure, real-time AI pipelines, and large-scale platform tooling. Previously a Software Engineer Intern at Apple.",
   ctas: [
     { label: "Email", href: "mailto:karachiwalaumer2612@gmail.com" },
     { label: "Projects", href: "#projects" },
   ],
-  chips: ["2+ yrs backend", "Currently at Apple", "Azure & AWS", "AI + compliance", "Teams & Zoom automation"],
+  chips: ["2+ yrs backend", "Ex-Apple SWE Intern", "Azure & AWS", "AI + compliance", "Teams & Zoom automation"],
   snapshots: [
     { title: "Focus", detail: "APIs, automation, AI features" },
     { title: "Deploy", detail: "Azure AKS, AWS EKS/EC2" },
@@ -31,8 +31,8 @@ export const experience = [
   {
     role: "Software Engineer Intern",
     company: "Apple",
-    period: "March 2026 – Present",
-    location: "Cork, Ireland",
+    period: "March 2026 – September 2026",
+    location: "Dublin, Ireland",
     summary: [
       "Contributing to Apple's internal SEO Manager platform managing metadata across 1M+ URLs, working across 4 distributed services built on Java (Spring Boot), Apache Cassandra, AWS SQS, and Solr.",
       "Built backend for Scheduled Updates and Revert Changeset features — enabling SEO editors to queue metadata changes at future timestamps and auto-revert campaign changes.",
@@ -100,7 +100,7 @@ export const credentials = {
     "Web Development Bootcamp by Angela Yu",
   ],
   education: [
-    "MSc Computing (DevOps), Atlantic Technological University (Sept 2025 – Present)",
+    "MSc Computing (DevOps), Atlantic Technological University (Sept 2025 – Sept 2026)",
     "B.Tech Computer Engineering, Bhagwan Mahavir College | CGPA: 8.48/10",
   ],
 };
