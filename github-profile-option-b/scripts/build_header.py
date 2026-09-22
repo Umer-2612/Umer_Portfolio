@@ -1,111 +1,113 @@
-"""Generate the light and dark header banners for the profile README.
+"""Generate the status-page header (light and dark) for the profile README.
 
-Edit the text below, then run:  python3 scripts/build_header.py
+Edit NAME/ROLE/STATUS or the TIMELINE rows, then run:  python3 scripts/build_header.py
 """
-import math
+from dataclasses import dataclass
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
 
-EYEBROW = "BACKEND & DEVOPS ENGINEER · DUBLIN, IRELAND"
 NAME = "Umer Karachiwala"
-TAGLINE = "Distributed backends, real-time audio pipelines"
-TAGLINE_2 = "and the cloud infrastructure they run on."
-PIPELINE = ["WebSocket", "FunASR", "turn model"]
-TRANSCRIPT = "“Open to backend & platform roles.”"
+ROLE = "Backend & DevOps Engineer · Dublin, Ireland"
+STATUS = "All systems operational · open to backend, platform & DevOps roles"
+
+# Timeline starts in this month; each bar is one month.
+START_YEAR, START_MONTH = 2023, 10
+MONTHS = 36
+
+
+@dataclass(frozen=True)
+class Row:
+    label: str
+    span: str
+    start: tuple[int, int]
+    end: tuple[int, int]
+
+
+TIMELINE = (
+    Row("Apple · Software Engineer Intern", "Mar – Sep 2026", (2026, 3), (2026, 9)),
+    Row("ATU · MSc Computing (DevOps)", "Sep 2025 – Sep 2026", (2025, 9), (2026, 9)),
+    Row("WebOsmotic · Jr Backend Engineer", "Apr 2024 – Jun 2025", (2024, 4), (2025, 6)),
+    Row("WebOsmotic · Software Engineer Intern", "Oct 2023 – Mar 2024", (2023, 10), (2024, 3)),
+)
 
 THEMES = {
-    "dark": {
-        "bg": "#0e1116", "panel": "#161b22", "border": "#262c36",
-        "text": "#e6edf3", "muted": "#8b949e", "accent": "#ff8a4c", "accent_soft": "#ff8a4c33",
-    },
-    "light": {
-        "bg": "#ffffff", "panel": "#f6f8fa", "border": "#d0d7de",
-        "text": "#1f2328", "muted": "#59636e", "accent": "#d9531e", "accent_soft": "#d9531e22",
-    },
+    "dark": {"bg": "#0d1117", "border": "#30363d", "text": "#e6edf3", "muted": "#8b949e",
+             "ok": "#3fb950", "ok_soft": "#3fb95026", "idle": "#21262d"},
+    "light": {"bg": "#ffffff", "border": "#d0d7de", "text": "#1f2328", "muted": "#59636e",
+              "ok": "#1a7f37", "ok_soft": "#1a7f371f", "idle": "#eaeef2"},
 }
 
-WIDTH, HEIGHT = 1200, 300
+WIDTH = 1200
+PAD_X = 48
 SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"
-MONO = "'JetBrains Mono','SF Mono',Menlo,Consolas,monospace"
 
-BAR_COUNT = 22
-BAR_WIDTH = 5
-BAR_GAP = 4
-WAVE_X = 640
-WAVE_MID_Y = 116
-CHIP_Y = 88
-CHIP_HEIGHT = 36
-TRANSCRIPT_LOOP_S = 6
+LABEL_COL_WIDTH = 330
+SPAN_COL_WIDTH = 170
+BAR_GAP = 3
+BAR_HEIGHT = 28
+ROW_HEIGHT = 50
+TIMELINE_TOP = 196
 
 
-def waveform_bars(t: dict) -> str:
-    bars = []
-    for i in range(BAR_COUNT):
-        x = WAVE_X + i * (BAR_WIDTH + BAR_GAP)
-        # Deterministic, speech-like envelope so the banner looks the same on every build.
-        low = 6 + 4 * abs(math.sin(i * 0.9))
-        high = 18 + 34 * abs(math.sin(i * 0.45 + 0.6))
-        dur = 0.9 + (i % 5) * 0.17
-        heights = f"{low:.0f};{high:.0f};{low + 6:.0f};{high * 0.7:.0f};{low:.0f}"
-        ys = ";".join(f"{WAVE_MID_Y - float(h) / 2:.1f}" for h in heights.split(";"))
-        bars.append(
-            # Static height = a mid-speech frame, so renderers without SMIL still show a waveform.
-            f'<rect x="{x}" y="{WAVE_MID_Y - high * 0.7 / 2:.1f}" width="{BAR_WIDTH}" height="{high * 0.7:.0f}" rx="2.5" fill="{t["accent"]}">'
-            f'<animate attributeName="height" values="{heights}" dur="{dur:.2f}s" repeatCount="indefinite"/>'
-            f'<animate attributeName="y" values="{ys}" dur="{dur:.2f}s" repeatCount="indefinite"/></rect>'
-        )
-    return "\n    ".join(bars)
+def month_index(year: int, month: int) -> int:
+    return (year - START_YEAR) * 12 + (month - START_MONTH)
 
 
-def pipeline_chips(t: dict) -> str:
-    x = WAVE_X
-    y = CHIP_Y + 60
-    parts = []
-    for index, label in enumerate(PIPELINE):
-        width = len(label) * 8.4 + 28
-        parts.append(
-            f'<rect x="{x:.1f}" y="{y}" width="{width:.1f}" height="{CHIP_HEIGHT}" rx="8" fill="{t["panel"]}" stroke="{t["border"]}"/>'
-            f'<text x="{x + width / 2:.1f}" y="{y + 23}" text-anchor="middle" font-family="{MONO}" font-size="14" fill="{t["text"]}">{escape(label)}</text>'
-        )
-        x += width
-        if index < len(PIPELINE) - 1:
-            parts.append(
-                f'<path d="M{x + 6:.1f} {y + CHIP_HEIGHT / 2} h18" stroke="{t["muted"]}" stroke-width="1.5"/>'
-                f'<path d="M{x + 20:.1f} {y + CHIP_HEIGHT / 2 - 4} l5 4 l-5 4" fill="none" stroke="{t["muted"]}" stroke-width="1.5"/>'
-            )
-            x += 32
-    return "\n    ".join(parts)
-
-
-def transcript_line(t: dict) -> str:
-    y = CHIP_Y + 60 + CHIP_HEIGHT + 38
+def status_pill(t: dict) -> str:
+    width = len(STATUS) * 7.3 + 58
+    x = WIDTH - PAD_X - width
     return (
-        f'<g opacity="1">'
-        f'<text x="{WAVE_X}" y="{y}" font-family="{MONO}" font-size="13" fill="{t["muted"]}">final</text>'
-        f'<text x="{WAVE_X + 52}" y="{y}" font-family="{MONO}" font-size="15" fill="{t["text"]}">{escape(TRANSCRIPT)}</text>'
-        f'<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.35;0.45;0.92;1" '
-        f'dur="{TRANSCRIPT_LOOP_S}s" repeatCount="indefinite"/></g>'
+        f'<rect x="{x:.1f}" y="44" width="{width:.1f}" height="34" rx="17" fill="{t["ok_soft"]}"/>'
+        f'<circle cx="{x + 22:.1f}" cy="61" r="5" fill="{t["ok"]}"/>'
+        f'<circle cx="{x + 22:.1f}" cy="61" r="5" fill="none" stroke="{t["ok"]}" stroke-width="2">'
+        f'<animate attributeName="r" values="5;11" dur="1.8s" repeatCount="indefinite"/>'
+        f'<animate attributeName="opacity" values="0.8;0" dur="1.8s" repeatCount="indefinite"/></circle>'
+        f'<text x="{x + 38:.1f}" y="66" font-family="{SANS}" font-size="13.5" font-weight="600" fill="{t["ok"]}">{escape(STATUS)}</text>'
     )
+
+
+def timeline_rows(t: dict) -> str:
+    bars_left = PAD_X + LABEL_COL_WIDTH
+    bars_width = WIDTH - PAD_X - SPAN_COL_WIDTH - bars_left
+    bar_width = (bars_width - BAR_GAP * (MONTHS - 1)) / MONTHS
+    parts = []
+    for row_index, row in enumerate(TIMELINE):
+        y = TIMELINE_TOP + row_index * ROW_HEIGHT
+        first, last = month_index(*row.start), month_index(*row.end)
+        parts.append(
+            f'<text x="{PAD_X}" y="{y + 19}" font-family="{SANS}" font-size="15" font-weight="600" fill="{t["text"]}">{escape(row.label)}</text>'
+        )
+        for month in range(MONTHS):
+            active = first <= month <= last
+            x = bars_left + month * (bar_width + BAR_GAP)
+            parts.append(
+                f'<rect x="{x:.1f}" y="{y}" width="{bar_width:.1f}" height="{BAR_HEIGHT}" rx="2" '
+                f'fill="{t["ok"] if active else t["idle"]}"/>'
+            )
+        parts.append(
+            f'<text x="{WIDTH - PAD_X}" y="{y + 19}" text-anchor="end" font-family="{SANS}" font-size="13.5" fill="{t["muted"]}">{escape(row.span)}</text>'
+        )
+    axis_y = TIMELINE_TOP + len(TIMELINE) * ROW_HEIGHT + 4
+    parts.append(f'<text x="{bars_left}" y="{axis_y}" font-family="{SANS}" font-size="12" fill="{t["muted"]}">Oct 2023</text>')
+    parts.append(
+        f'<text x="{bars_left + bars_width:.1f}" y="{axis_y}" text-anchor="end" font-family="{SANS}" font-size="12" fill="{t["muted"]}">Sep 2026</text>'
+    )
+    return "\n  ".join(parts)
 
 
 def build(theme: str) -> str:
     t = THEMES[theme]
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-label="{escape(NAME)}, backend and DevOps engineer in Dublin, Ireland">
-  <rect x="0.5" y="0.5" width="{WIDTH - 1}" height="{HEIGHT - 1}" rx="18" fill="{t["bg"]}" stroke="{t["border"]}"/>
-  <rect x="56" y="64" width="4" height="150" rx="2" fill="{t["accent"]}"/>
-  <text x="84" y="84" font-family="{SANS}" font-size="13" font-weight="600" letter-spacing="2" fill="{t["accent"]}">{escape(EYEBROW)}</text>
-  <text x="82" y="140" font-family="{SANS}" font-size="50" font-weight="700" fill="{t["text"]}">{escape(NAME)}</text>
-  <text x="84" y="182" font-family="{SANS}" font-size="19" fill="{t["muted"]}">{escape(TAGLINE)}</text>
-  <text x="84" y="208" font-family="{SANS}" font-size="19" fill="{t["muted"]}">{escape(TAGLINE_2)}</text>
-  <rect x="{WAVE_X - 24}" y="44" width="{WIDTH - WAVE_X - 32}" height="{HEIGHT - 88}" rx="14" fill="{t["accent_soft"]}" opacity="0.35"/>
-  <text x="{WAVE_X}" y="72" font-family="{MONO}" font-size="12" fill="{t["muted"]}">live audio in</text>
-  <g>
-    {waveform_bars(t)}
-  </g>
-  {pipeline_chips(t)}
-  {transcript_line(t)}
+    height = TIMELINE_TOP + len(TIMELINE) * ROW_HEIGHT + 40
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{height}" viewBox="0 0 {WIDTH} {height}" role="img" aria-label="{escape(NAME)}, {escape(ROLE)}. {escape(STATUS)}. Experience timeline from October 2023 to September 2026.">
+  <rect x="0.5" y="0.5" width="{WIDTH - 1}" height="{height - 1}" rx="16" fill="{t["bg"]}" stroke="{t["border"]}"/>
+  <text x="{PAD_X}" y="74" font-family="{SANS}" font-size="38" font-weight="700" fill="{t["text"]}">{escape(NAME)}</text>
+  <text x="{PAD_X}" y="108" font-family="{SANS}" font-size="17" fill="{t["muted"]}">{escape(ROLE)}</text>
+  {status_pill(t)}
+  <line x1="{PAD_X}" y1="140" x2="{WIDTH - PAD_X}" y2="140" stroke="{t["border"]}"/>
+  <text x="{PAD_X}" y="174" font-family="{SANS}" font-size="12" font-weight="600" letter-spacing="1.5" fill="{t["muted"]}">UPTIME</text>
+  {timeline_rows(t)}
 </svg>
 """
 
