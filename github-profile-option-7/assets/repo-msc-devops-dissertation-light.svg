@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="176" viewBox="0 0 480 176" role="img" aria-label="msc-devops-dissertation: Greening the Pipeline: the carbon cost of CI/CD across 5 open-source projects, with a replication package. Stack: Python, GitHub Actions, CI/CD. Updated 2026-08-28.">
+<rect x="0.5" y="0.5" width="479" height="175" rx="14" fill="#f5f9ff" stroke="#c6d8f2"/><defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#e4eefb" stroke-width="1"/></pattern></defs><rect x="1" y="1" width="478" height="174" rx="14" fill="url(#g)"/>
+<path d="M24 26h14v18H24z M27 26v18" fill="none" stroke="#4a6285" stroke-width="1.6"/>
+<text x="48.0" y="41.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="17" font-weight="700" fill="#1f6feb" text-anchor="start" letter-spacing="0">msc-devops-dissertation</text>
+<text x="24.0" y="74.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="400" fill="#0b1f3a" text-anchor="start" letter-spacing="0">Greening the Pipeline: the carbon cost of CI/CD across 5</text>
+<text x="24.0" y="95.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="400" fill="#0b1f3a" text-anchor="start" letter-spacing="0">open-source projects, with a replication package.</text>
+<rect x="24" y="112" width="60" height="22" rx="11" fill="#1f6feb1a"/>
+<text x="54.0" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#1f6feb" text-anchor="middle" letter-spacing="0">Python</text>
+<rect x="90" y="112" width="116" height="22" rx="11" fill="#1f6feb1a"/>
+<text x="148.0" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#1f6feb" text-anchor="middle" letter-spacing="0">GitHub Actions</text>
+<rect x="212" y="112" width="53" height="22" rx="11" fill="#1f6feb1a"/>
+<text x="238.5" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#1f6feb" text-anchor="middle" letter-spacing="0">CI/CD</text>
+<circle cx="30" cy="154" r="5" fill="#3572A5"/>
+<text x="41.0" y="158.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="400" fill="#4a6285" text-anchor="start" letter-spacing="0">Python</text>
+<text x="456.0" y="158.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="12.5" font-weight="400" fill="#4a6285" text-anchor="end" letter-spacing="0">updated 2026-08-28</text>
+</svg>

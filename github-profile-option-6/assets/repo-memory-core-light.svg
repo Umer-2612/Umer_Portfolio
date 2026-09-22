@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="176" viewBox="0 0 480 176" role="img" aria-label="memory-core: Memory service for AI apps with semantic search on PostgreSQL and pgvector. Stack: FastAPI, PostgreSQL, pgvector. Updated 2025-12-24.">
+<rect x="0.5" y="0.5" width="479" height="175" rx="14" fill="#ffffff" stroke="#d0d7de"/>
+<path d="M24 26h14v18H24z M27 26v18" fill="none" stroke="#59636e" stroke-width="1.6"/>
+<text x="48.0" y="41.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="17" font-weight="700" fill="#1a7f37" text-anchor="start" letter-spacing="0">memory-core</text>
+<text x="24.0" y="74.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="400" fill="#1f2328" text-anchor="start" letter-spacing="0">Memory service for AI apps with semantic search on</text>
+<text x="24.0" y="95.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="400" fill="#1f2328" text-anchor="start" letter-spacing="0">PostgreSQL and pgvector.</text>
+<rect x="24" y="112" width="67" height="22" rx="11" fill="#1a7f371f"/>
+<text x="57.5" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#1a7f37" text-anchor="middle" letter-spacing="0">FastAPI</text>
+<rect x="97" y="112" width="88" height="22" rx="11" fill="#1a7f371f"/>
+<text x="141.0" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#1a7f37" text-anchor="middle" letter-spacing="0">PostgreSQL</text>
+<rect x="191" y="112" width="74" height="22" rx="11" fill="#1a7f371f"/>
+<text x="228.0" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#1a7f37" text-anchor="middle" letter-spacing="0">pgvector</text>
+<circle cx="30" cy="154" r="5" fill="#3572A5"/>
+<text x="41.0" y="158.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="400" fill="#59636e" text-anchor="start" letter-spacing="0">Python</text>
+<text x="456.0" y="158.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="12.5" font-weight="400" fill="#59636e" text-anchor="end" letter-spacing="0">updated 2025-12-24</text>
+</svg>

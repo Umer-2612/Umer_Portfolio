@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="176" viewBox="0 0 480 176" role="img" aria-label="realtime-transcribe: Self-hosted WebSocket speech-to-text with a model that decides when a speaker has finished. Stack: Python, FunASR, WebSockets, Docker. Updated 2026-09-22.">
+<rect x="0.5" y="0.5" width="479" height="175" rx="14" fill="#0d1117" stroke="#30363d"/>
+<path d="M24 26h14v18H24z M27 26v18" fill="none" stroke="#8b949e" stroke-width="1.6"/>
+<text x="48.0" y="41.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="17" font-weight="700" fill="#3fb950" text-anchor="start" letter-spacing="0">realtime-transcribe</text>
+<text x="24.0" y="74.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="400" fill="#e6edf3" text-anchor="start" letter-spacing="0">Self-hosted WebSocket speech-to-text with a model that</text>
+<text x="24.0" y="95.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="400" fill="#e6edf3" text-anchor="start" letter-spacing="0">decides when a speaker has finished.</text>
+<rect x="24" y="112" width="60" height="22" rx="11" fill="#3fb95026"/>
+<text x="54.0" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#3fb950" text-anchor="middle" letter-spacing="0">Python</text>
+<rect x="90" y="112" width="60" height="22" rx="11" fill="#3fb95026"/>
+<text x="120.0" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#3fb950" text-anchor="middle" letter-spacing="0">FunASR</text>
+<rect x="156" y="112" width="88" height="22" rx="11" fill="#3fb95026"/>
+<text x="200.0" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#3fb950" text-anchor="middle" letter-spacing="0">WebSockets</text>
+<rect x="250" y="112" width="60" height="22" rx="11" fill="#3fb95026"/>
+<text x="280.0" y="127.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="11.5" font-weight="600" fill="#3fb950" text-anchor="middle" letter-spacing="0">Docker</text>
+<circle cx="30" cy="154" r="5" fill="#3572A5"/>
+<text x="41.0" y="158.0" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="12.5" font-weight="400" fill="#8b949e" text-anchor="start" letter-spacing="0">Python</text>
+<text x="456.0" y="158.0" font-family="'JetBrains Mono','SF Mono',Menlo,Consolas,monospace" font-size="12.5" font-weight="400" fill="#8b949e" text-anchor="end" letter-spacing="0">updated 2026-09-22</text>
+</svg>
