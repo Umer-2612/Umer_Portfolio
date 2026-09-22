@@ -7,7 +7,6 @@ export const meta = {
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/umerkarachiwala/" },
     { label: "GitHub", href: "https://github.com/Umer-2612" },
-    { label: "Portfolio", href: "https://karachiwalaumer.netlify.app/" },
   ],
 };
 
