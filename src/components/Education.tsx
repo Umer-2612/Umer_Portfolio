@@ -8,7 +8,7 @@ export const Education = () => {
             school: "Atlantic Technological University",
             location: "Donegal, Ireland",
             degree: "Masters of Science in Computing in DevOps",
-            period: "Sept 2025 – Present",
+            period: "Sept 2025 – Sept 2026",
             grade: null
         },
         {
