@@ -32,7 +32,7 @@ export const experience = [
     role: "Software Engineer Intern",
     company: "Apple",
     period: "March 2026 – September 2026",
-    location: "Dublin, Ireland",
+    location: "Cork, Ireland",
     summary: [
       "Contributing to Apple's internal SEO Manager platform managing metadata across 1M+ URLs, working across 4 distributed services built on Java (Spring Boot), Apache Cassandra, AWS SQS, and Solr.",
       "Built backend for Scheduled Updates and Revert Changeset features — enabling SEO editors to queue metadata changes at future timestamps and auto-revert campaign changes.",
