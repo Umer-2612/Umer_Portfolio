@@ -32,7 +32,7 @@ export const Contact = () => {
                             </a>
                             <div className="flex items-center gap-2.5 sm:gap-3 text-muted-foreground text-sm sm:text-base 3xl:text-lg">
                                 <MapPin size={18} className="sm:w-5 sm:h-5 shrink-0" />
-                                <span>Cork, Ireland</span>
+                                <span>Dublin, Ireland</span>
                             </div>
                             <div className="flex items-center gap-2.5 sm:gap-3 text-muted-foreground text-sm sm:text-base 3xl:text-lg">
                                 <Phone size={18} className="sm:w-5 sm:h-5 shrink-0" />
