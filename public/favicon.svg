@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Umer Karachiwala</title>
+  <style>
+    .bg { fill: #14130f; }
+    .ink { stroke: #f4f1ea; }
+    .hot { stroke: #d9461b; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #ece8dd; }
+      .ink { stroke: #14130f; }
+    }
+  </style>
+  <rect class="bg" width="512" height="512" rx="116"/>
+  <g fill="none" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+    <path class="ink" d="M112 148 V292 Q112 366 178 366 Q244 366 244 292 V148"/>
+    <path class="ink" d="M308 148 V366"/>
+    <path class="ink" d="M426 148 L312 262"/>
+    <path class="hot" d="M354 236 L432 366"/>
+  </g>
+</svg>
